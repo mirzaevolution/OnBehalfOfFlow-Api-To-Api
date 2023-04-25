@@ -10,7 +10,7 @@ namespace Obo.Web.App.Controllers
     {
         public IActionResult Login(string redirectUrl = "/")
         {
-            string returnUrl = Url.IsLocalUrl(redirectUrl) ? redirectUrl : Url.Action("Index", "Home", null, Request.Scheme) ?? "/";
+            string returnUrl = Url.IsLocalUrl(redirectUrl) ? redirectUrl : Url.Action("Sha256", "Hash", null, Request.Scheme) ?? "/";
             return Challenge(new AuthenticationProperties
             {
                 RedirectUri = returnUrl
@@ -20,7 +20,7 @@ namespace Obo.Web.App.Controllers
         [Authorize]
         public IActionResult Logout()
         {
-            string returnUrl = Url.Action("Index", "Home", null, Request.Scheme) ?? "/";
+            string returnUrl = Url.Action("Sha256", "Hash", null, Request.Scheme) ?? "/";
             return SignOut(new AuthenticationProperties
             {
                 RedirectUri = returnUrl
