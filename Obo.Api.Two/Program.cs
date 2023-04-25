@@ -1,3 +1,5 @@
+using Microsoft.Identity.Web;
+
 namespace Obo.Api.Two
 {
     public class Program
@@ -5,20 +7,19 @@ namespace Obo.Api.Two
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
-            // Add services to the container.
-
-            builder.Services.AddControllers();
+            var services = builder.Services;
+            var configuration = builder.Configuration;
+            services.AddMicrosoftIdentityWebApiAuthentication(configuration);
+            services.AddDistributedMemoryCache();
+            services.AddControllers();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
-
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
-
-
             app.MapControllers();
 
             app.Run();

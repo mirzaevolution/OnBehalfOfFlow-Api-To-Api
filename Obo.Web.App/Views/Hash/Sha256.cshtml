@@ -1,0 +1,46 @@
+﻿@model Obo.Web.App.Models.Hash.HashViewModel
+
+@{
+    ViewData["Title"] = "Sha256 Hash";
+}
+
+<h2 class="text-primary mb-3">Sha256 Hash</h2>
+
+@if(Model != null)
+{
+    if (!string.IsNullOrEmpty(Model.Message))
+    {
+        <div class="alert alert-danger mb-2">
+            <span class="fw-bold">@Model.Message</span>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-success mb-2">
+            <h3>@Model.Output</h3>
+        </div>
+    }
+    
+}
+<div class="row mt-2">
+    <div class="col-md-4">
+        <form asp-action="Sha256">
+            <div class="form-group mb-3">
+                <label for="Input" class="mb-1 fw-bold">Enter Plain Text:</label>
+                <input asp-for="Input" class="form-control" placeholder="Enter plaintext to hash"/>
+                <span asp-validation-for="Input" class="text-danger"></span>
+            </div>
+            <input hidden asp-for="Output"/>
+            <input hidden asp-for="Message" />
+
+            <div class="form-group">
+                <input type="submit" value="Hash!" class="btn btn-primary" />
+
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
