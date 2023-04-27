@@ -22,6 +22,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Hash" asp-action="Sha256">SHA-256 Hash</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Crypto" asp-action="Encrypt">AES-256 Encryption</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="Crypto" asp-action="Decrypt">AES-256 Decryption</a>
+                        </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
                         @if (User.Identity.IsAuthenticated)

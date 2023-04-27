@@ -12,9 +12,9 @@ namespace Obo.Api.One.Controllers
     [RequiredScope(RequiredScopesConfigurationKey = "AzureAd:Scopes")]
     public class HashController : ControllerBase
     {
-        private readonly HashHelper _hashHelper;
+        private readonly IHashHelper _hashHelper;
 
-        public HashController(HashHelper hashHelper)
+        public HashController(IHashHelper hashHelper)
         {
             _hashHelper = hashHelper;
         }
@@ -33,7 +33,7 @@ namespace Obo.Api.One.Controllers
                     Base64Hashed = result
                 });
             }
-            return BadRequest();
+            return BadRequest(ModelState);
         }
     }
 }

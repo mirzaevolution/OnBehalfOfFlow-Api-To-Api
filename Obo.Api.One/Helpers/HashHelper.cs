@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Obo.Api.One.Helpers
 {
-    public class HashHelper
+    public class HashHelper : IHashHelper
     {
         public Task<string> SHA256Hash(string input)
         {

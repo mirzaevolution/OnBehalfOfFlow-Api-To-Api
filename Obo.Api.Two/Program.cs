@@ -1,4 +1,5 @@
 using Microsoft.Identity.Web;
+using Obo.Api.Two.Helpers;
 
 namespace Obo.Api.Two
 {
@@ -10,9 +11,9 @@ namespace Obo.Api.Two
             var services = builder.Services;
             var configuration = builder.Configuration;
             services.AddMicrosoftIdentityWebApiAuthentication(configuration);
-            services.AddDistributedMemoryCache();
+            services.AddScoped<ICryptoHelper, CryptoHelper>();
             services.AddControllers();
-
+            services.AddHttpContextAccessor();
             var app = builder.Build();
 
             app.UseHttpsRedirection();
