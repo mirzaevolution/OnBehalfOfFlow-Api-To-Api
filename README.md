@@ -33,4 +33,33 @@ Api #1 (no need to call Api #2). But, Cryptography Controller in Api #1 just a c
 So, when the user needs to call Cryptography Controller, there will be On Behalf Of Flow Process there to generate new access_token for accessing 
 the Api #2.
 
-![Technical-Architecture](/Assets/2023-04-29_02h48_00.png)
+![Data-Security-App-Architecture](/Assets/2023-04-29_02h48_00.png)
+
+Ok, let's configure the Azure AD Portal first by creating 3 app registrations (Web App, Web Api #1 and Web Api #2).
+
+![Azure-AD-Portal](/Assets/2023-04-29_02h50_59.png)
+
+In Azure AD Portal App Registration, i have created 3 app registrations with those names in the picture above.
+Let's configure the **Obo.Api.Two (Api #2)** first. You can use whatever names you like in your own Azure AD.
+
+![Obo-Api-Two](/Assets/2023-04-29_02h51_24.png)
+
+In the **Obo.Api.Two (Api #2)**, please take a note on *Client Id* and *Tenant Id* to be used in appsettings for Obo.Api.Two.
+
+Now, go to **Expose an Api** menu. In there, you can create a scope like mine. 
+
+![Obo-Api-Two-Scope1](/Assets/2023-04-29_02h52_13.png)
+
+![Obo-Api-Two-Scope2](/Assets/2023-04-29_02h53_18.png)
+
+I created a scope with name Obo.Api.Two for it. You can create any name you like.
+
+After that, we can add authorized client appplications (optional). This will be your Api #1 as it will call the Api #2.
+Just click Add a Client Application button and add Client Id of Api #1 (Obo.Api.One in mine) and select the scope you have created.
+
+![Obo-Api-Two-Scope2](/Assets/2023-04-29_02h54_14.png)
+
+
+
+
+
