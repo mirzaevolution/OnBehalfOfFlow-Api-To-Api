@@ -61,5 +61,27 @@ Just click Add a Client Application button and add Client Id of Api #1 (Obo.Api.
 
 
 
+All right, we have configured the **Obo.Api.Two**, now let's configure the **Obo.Api.One**.
+
+![Obo-Api-One](/Assets/2023-04-29_02h55_19.png)
+
+Take a note both *Client Id* and *Tenant Id* of it for later use. And now, we can navigate to **Certificate and Secrets** menu.
+In this menu, you should generate a secret to be used to call Api #2 (**Obo.Api.Two**). Don't forget to copy the value after generating it.
+
+![Obo-Api-One-Secret](/Assets/2023-04-29_02h56_05.png)
+
+![Obo-Api-One-Secret](/Assets/2023-04-29_02h56_29.png)
+
+Now, let's jump to **Api Permissions** menu to add the permission for **Obo.Api.Two** scope that we have created earlier.
+
+![Obo-Api-One-Permission](/Assets/2023-04-29_02h56_51.png)
+
+You can hit the Add Permission button > My Apis Tab > Select Obo.Api.Two scope and add it. Don't forget to hit **Grant admin consent for default directory** button.
+
+![Obo-Api-One-Permission](/Assets/2023-04-29_02h57_25.png)
+
+
+
+
 
 
