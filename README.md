@@ -35,6 +35,9 @@ the Api #2.
 
 ![Data-Security-App-Architecture](/Assets/2023-04-29_02h48_00.png)
 
+
+### Azure AD Portal Configuration
+
 Ok, let's configure the Azure AD Portal first by creating 3 app registrations (Web App, Web Api #1 and Web Api #2).
 
 ![Azure-AD-Portal](/Assets/2023-04-29_02h50_59.png)
@@ -65,7 +68,7 @@ All right, we have configured the **Obo.Api.Two**, now let's configure the **Obo
 
 ![Obo-Api-One](/Assets/2023-04-29_02h55_19.png)
 
-Take a note both *Client Id* and *Tenant Id* of it for later use. And now, we can navigate to **Certificate and Secrets** menu.
+Take a note both *Client Id* and *Tenant Id* for later use. And now, we can navigate to **Certificate and Secrets** menu.
 In this menu, you should generate a secret to be used to call Api #2 (**Obo.Api.Two**). Don't forget to copy the value after generating it.
 
 ![Obo-Api-One-Secret](/Assets/2023-04-29_02h56_05.png)
@@ -93,6 +96,79 @@ Follow the step like in the **Obo.Api.Two** to add authorized client app. This c
 
 
 ![Obo-Api-One-Expose-Scope](/Assets/2023-04-29_03h01_16.png)
+
+The last step, we will configure the calling web app which is **Obo.Web.App**.
+Take a note on both *Client Id* and *Tenant Id* for later use as well.
+
+![Obo-Web-App](/Assets/2023-04-29_03h02_27.png)
+
+Go to **Certificates & Secrets** menu to create the client secret to call **Obo.Api.One**.
+
+![Obo-Web-App-Secret](/Assets/2023-04-29_03h03_08.png)
+
+![Obo-Web-App-Secret](/Assets/2023-04-29_03h03_24.png)
+
+Go to **API Permisions** menu and add both **Obo.Api.One** and **Obo.Api.Two** scopes and don't forget to hit 
+**Grant admin consent for Default Directory** button.
+
+![Obo-Web-App-Permission](/Assets/2023-04-29_03h03_38.png)
+
+![Obo-Web-App-Permission](/Assets/2023-04-29_03h04_07.png)
+
+Now, we are jumping to the most important part. Configuring the Authentication by adding web url of our web web app (**Obo.Web.App**).
+Go to **Authentication** menu and add the localhost urls in the web application section.
+
+![Obo-Web-App-Authentication](/Assets/2023-04-29_03h05_05.png)
+
+
+
+### Visual Studio Configuration and Code Explanation
+
+
+![VS](/Assets/2023-04-29_03h06_02.png)
+
+Azure AD Portal configuration has finished. Let's jump to the solution in VS. There, you can see we have 3 projects
+that are 
+ - **Obo.Web.App => ASP.NET Core MVC Web App** 
+ - **Obo.Api.One => Api #1 (ASP.NET Core API)** 
+ - **Obo.Api.Two => Api #2 (ASP.NET Core API)**
+
+
+
+ ### Obo.Api.Two Project
+
+Let's go and take a look on Obo.Api.Two for details.
+First, make sure install the packages listed in the screenshot:
+
+![Obo-Api-Two](/Assets/2023-04-29_03h14_27.png)
+
+After that, don't forget to replace the following information in the appsettings.json.
+
+![Obo-Api-Two](/Assets/2023-04-29_03h11_46.png)
+
+Now, we can see our own Program.cs configuration to see how we register the Web Api Authentication/Authorization process.
+
+![Obo-Api-Two](/Assets/2023-04-29_03h13_40.png)
+
+`services.AddMicrosoftIdentityWebApiAuthentication(configuration)` is line of code to register the MSAL for web api that handles
+token validation (JWT), refreshing the token and etc. The add scoped for *CryptoHelper* below it is used to register the helper class.
+
+For the controller, make sure you add RequiredScope attribute to make sure the calling app has the **Obo.Api.Two** scope.
+
+![Obo-Api-Two](/Assets/2023-04-29_03h15_28.png)
+
+
+ ### Obo.Api.One Project
+
+
+
+
+
+
+
+
+
+
 
 
 
