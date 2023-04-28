@@ -80,6 +80,20 @@ You can hit the Add Permission button > My Apis Tab > Select Obo.Api.Two scope a
 
 ![Obo-Api-One-Permission](/Assets/2023-04-29_02h57_25.png)
 
+After adding scope permission, now go to **Expose an Api** menu to create a scope for **Obo.Api.One**. This will be used by 
+the calling web app.
+
+![Obo-Api-One-Expose-Scope](/Assets/2023-04-29_02h59_33.png)
+
+Hit the **Add a scope** button > Add the scope with name Obo.Api.One (follow the screenshot) and hit **Save**.
+
+![Obo-Api-One-Expose-Scope](/Assets/2023-04-29_03h00_08.png)
+
+Follow the step like in the **Obo.Api.Two** to add authorized client app. This client id here must use client id of calling web app.
+
+
+![Obo-Api-One-Expose-Scope](/Assets/2023-04-29_03h01_16.png)
+
 
 
 
