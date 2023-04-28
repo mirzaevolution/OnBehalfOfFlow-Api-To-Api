@@ -10,7 +10,6 @@ namespace Obo.Web.App
             var services = builder.Services;
             var configuration = builder.Configuration;
 
-
             services.AddControllersWithViews();
             services.AddMicrosoftIdentityWebAppAuthentication(configuration)
                 .EnableTokenAcquisitionToCallDownstreamApi()
@@ -25,7 +24,6 @@ namespace Obo.Web.App
             });
 
             var app = builder.Build();
-
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

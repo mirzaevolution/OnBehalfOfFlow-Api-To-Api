@@ -13,7 +13,6 @@ namespace Obo.Api.Two
             services.AddMicrosoftIdentityWebApiAuthentication(configuration);
             services.AddScoped<ICryptoHelper, CryptoHelper>();
             services.AddControllers();
-            services.AddHttpContextAccessor();
             var app = builder.Build();
 
             app.UseHttpsRedirection();

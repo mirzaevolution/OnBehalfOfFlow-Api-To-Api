@@ -18,7 +18,8 @@ namespace Obo.Api.One.Services
         public async Task<EncryptResponse> Encrypt(EncryptRequest encryptRequest)
         {
             _httpClient.SetBearerToken(await _tokenHelper.GetAndRefreshToken());
-            HttpResponseMessage response = await _httpClient.PostAsJsonAsync<EncryptRequest>("/api/crypto/encrypt", encryptRequest);
+            HttpResponseMessage response = await _httpClient.PostAsJsonAsync<EncryptRequest>("/api/crypto/encrypt",
+                encryptRequest);
             if (response.IsSuccessStatusCode)
             {
                 EncryptResponse result = await response.Content.ReadFromJsonAsync<EncryptResponse>();
@@ -30,7 +31,8 @@ namespace Obo.Api.One.Services
         public async Task<DecryptResponse> Decrypt(DecryptRequest decryptRequest)
         {
             _httpClient.SetBearerToken(await _tokenHelper.GetAndRefreshToken());
-            HttpResponseMessage response = await _httpClient.PostAsJsonAsync<DecryptRequest>("/api/crypto/decrypt", decryptRequest);
+            HttpResponseMessage response = await _httpClient.PostAsJsonAsync<DecryptRequest>("/api/crypto/decrypt",
+                decryptRequest);
             if (response.IsSuccessStatusCode)
             {
                 DecryptResponse result = await response.Content.ReadFromJsonAsync<DecryptResponse>();

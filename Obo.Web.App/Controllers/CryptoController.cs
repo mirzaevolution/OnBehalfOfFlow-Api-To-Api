@@ -38,14 +38,15 @@ namespace Obo.Web.App.Controllers
                 EncryptResponse? response = null;
                 try
                 {
-                    response = await _downstreamApi.PostForUserAsync<EncryptRequest, EncryptResponse>("OboApiOne", new EncryptRequest
-                    {
-                        PlainText = model.PlainText,
-                        Key = model.Password
-                    }, options =>
-                    {
-                        options.RelativePath = path;
-                    });
+                    response = await _downstreamApi
+                        .PostForUserAsync<EncryptRequest, EncryptResponse>("OboApiOne", new EncryptRequest
+                        {
+                            PlainText = model.PlainText,
+                            Key = model.Password
+                        }, options =>
+                        {
+                            options.RelativePath = path;
+                        });
                     _logger.LogInformation($"Success result: {response.ChiperText}");
                 }
                 catch (Exception ex)
@@ -80,14 +81,15 @@ namespace Obo.Web.App.Controllers
                 DecryptResponse? response = null;
                 try
                 {
-                    response = await _downstreamApi.PostForUserAsync<DecryptRequest, DecryptResponse>("OboApiOne", new DecryptRequest
-                    {
-                        CipherText = model.CipherText,
-                        Key = model.Password
-                    }, options =>
-                    {
-                        options.RelativePath = path;
-                    });
+                    response = await _downstreamApi
+                        .PostForUserAsync<DecryptRequest, DecryptResponse>("OboApiOne", new DecryptRequest
+                        {
+                            CipherText = model.CipherText,
+                            Key = model.Password
+                        }, options =>
+                        {
+                            options.RelativePath = path;
+                        });
                     _logger.LogInformation($"Success result: {response.PlainText}");
                 }
                 catch (Exception ex)
