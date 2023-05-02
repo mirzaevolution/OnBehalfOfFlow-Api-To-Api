@@ -144,7 +144,7 @@ First, make sure install the packages listed in the screenshot:
 
 After that, don't forget to replace the following information in the appsettings.json.
 
-![Obo-Api-Two](/Assets/2023-04-29_03h11_46.png)
+![Obo-Api-Two](/Assets/2023-04-29_03h11_46.png) 
 
 Now, we can see our own Program.cs configuration to see how we register the Web Api Authentication/Authorization process.
 
@@ -159,6 +159,37 @@ For the controller, make sure you add RequiredScope attribute to make sure the c
 
 
  ### Obo.Api.One Project
+
+ For this project, the configuration is mostly the same with **Obo.Api.Two**. Let's take a look on this.
+ First, make sure install the packages listed in the screenshot:
+
+![Obo-Api-One](/Assets/2023-04-29_03h16_34.png)
+
+After that, don't forget to replace the following information in the appsettings.json.
+
+![Obo-Api-One](/Assets/2023-04-29_03h16_51.png) 
+
+Now, we can see our own Program.cs configuration to see how we register the Web Api Authentication/Authorization process.
+
+![Obo-Api-One](/Assets/2023-04-29_03h20_50.png)
+
+`services.AddMicrosoftIdentityWebApiAuthentication(configuration)` is line of code to register the MSAL for web api that handles
+token validation (JWT), refreshing the token and etc. 
+
+`JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();` will clear default claim types. This will be used to
+map incoming claims from Azure Ad.
+
+`services.AddDistributedMemoryCache();` is used to register distributed caching to save our token after doing user-assertion (on behalf of user flow) process.
+
+`services.AddScoped<ITokenHelper, TokenHelper>();` - registered the TokenHelper class used to user assertion process (getting access_token, save it to the cache and use it for calling **Obo.Api.Two**).
+
+`services.AddHttpClient<CryptoHttpService>(options =>
+            {
+                options.BaseAddress = new Uri(configuration["OboApiTwo:BaseUrl"]);
+            });` This code used to register CryptoHttpService. A custom
+
+
+
 
 
 
