@@ -186,9 +186,32 @@ map incoming claims from Azure Ad.
 `services.AddHttpClient<CryptoHttpService>(options =>
             {
                 options.BaseAddress = new Uri(configuration["OboApiTwo:BaseUrl"]);
-            });` This code used to register CryptoHttpService. A custom
+            });` This code used to register CryptoHttpService. A custom http service to invoke request to **Obo.Api.Two** endpoint.
+
+` services.Configure<JwtBearerOptions>(JwtBearerDefaults.AuthenticationScheme, config =>
+            {
+                config.MapInboundClaims = true;
+            });` This code used to configure JwtBearerOptions to map inbound claims.
+
+The most important part in **Obo.Api.One** project is TokehHelper.cs class that used to perform user assertion using current access token and request
+new access token using scope for **Obo.Api.Two** endpoint.
+
+![Obo-Api-One](/Assets/2023-04-29_03h18_30.png)
+
+![Obo-Api-One](/Assets/2023-04-29_03h19_14.png)
 
 
+Basically, it will check in the cache storage whether or not it has existing access token for current username
+that's still valid/not expired. If it exists and not expired, it will return the existing access token and used it
+when making request to **Obo.Api.Two** endpoint.
+
+![Obo-Api-One](/Assets/2023-04-29_03h19_25.png)
+
+If not, then it will perform user assertion and by means of MSAL Confidential Client Application, it will request
+a new token with scope for **Obo.Api.Two** on behalf of current user then it will be saved in cache.
+
+
+ ### Obo.Web.App Project
 
 
 

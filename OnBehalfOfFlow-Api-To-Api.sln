@@ -3,11 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Obo.Api.One", "Obo.Api.One\Obo.Api.One.csproj", "{24245A8C-43FB-43A2-821F-0F8D1F8D6944}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Obo.Api.One", "Obo.Api.One\Obo.Api.One.csproj", "{24245A8C-43FB-43A2-821F-0F8D1F8D6944}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Obo.Api.Two", "Obo.Api.Two\Obo.Api.Two.csproj", "{5D89CA0C-E5C5-42E6-B80E-F6D8DA65A859}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Obo.Api.Two", "Obo.Api.Two\Obo.Api.Two.csproj", "{5D89CA0C-E5C5-42E6-B80E-F6D8DA65A859}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Obo.Web.App", "Obo.Web.App\Obo.Web.App.csproj", "{3AB1223A-7E75-4919-B451-F52BB9609D05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Obo.Web.App", "Obo.Web.App\Obo.Web.App.csproj", "{3AB1223A-7E75-4919-B451-F52BB9609D05}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B9117502-65D4-4720-88F6-CFC696EE0B33}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
