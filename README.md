@@ -200,7 +200,6 @@ new access token using scope for **Obo.Api.Two** endpoint.
 
 ![Obo-Api-One](/Assets/2023-04-29_03h19_14.png)
 
-
 Basically, it will check in the cache storage whether or not it has existing access token for current username
 that's still valid/not expired. If it exists and not expired, it will return the existing access token and used it
 when making request to **Obo.Api.Two** endpoint.
@@ -211,7 +210,72 @@ If not, then it will perform user assertion and by means of MSAL Confidential Cl
 a new token with scope for **Obo.Api.Two** on behalf of current user then it will be saved in cache.
 
 
+![Obo-Api-One](/Assets/2023-04-29_03h19_54.png)
+
+![Obo-Api-One](/Assets/2023-04-29_03h20_29.png)
+
+ITokenHelper.cs above will be used in CryptoHttpService.cs class when invoking the access token.
+
+
+
  ### Obo.Web.App Project
+
+ Don't forget to install these following nuget packages:
+
+![Obo-Web-App](/Assets/2023-04-29_03h23_48.png)
+
+And replace the following appsetting's config:
+
+![Obo-Web-App](/Assets/2023-04-29_03h23_58.png)
+
+For the Program.cs, it will contain all the required config registration especially for registering MSAL for
+web + calling downstream api (**Obo.Api.One**). Here, we also customize the application cookie to match our 
+login/logout controller endpoint.
+
+![Obo-Web-App](/Assets/2023-04-29_03h25_38.png)
+
+![Obo-Web-App](/Assets/2023-04-29_03h26_19.png)
+
+The rest of the controllers that call the **Obo.Api.One** endpoint will use IDownstreamApi implementation that has predefined
+methods to do rest api based requests. With IDownstreamApi, we don't need to set bearer token manually as it will
+be handled by it (registered in Program.cs).
+
+![Obo-Web-App](/Assets/2023-04-29_03h26_44.png)
+
+![Obo-Web-App](/Assets/2023-04-29_03h27_33.png)
+
+![Obo-Web-App](/Assets/2023-04-29_03h28_20.png)
+
+![Obo-Web-App](/Assets/2023-04-29_03h29_02.png)
+
+
+
+ ### Running + Testing the Apps
+
+ Now let's run the apps and see what we have.
+
+![Result](/Assets/2023-04-29_03h30_50.png)
+
+![Result](/Assets/2023-04-29_03h31_02.png)
+
+![Result](/Assets/2023-04-29_03h31_12.png)
+
+![Result](/Assets/2023-04-29_03h33_31.png)
+
+![Result](/Assets/2023-04-29_03h33_42.png)
+
+![Result](/Assets/2023-04-29_03h33_54.png)
+
+![Result](/Assets/2023-04-29_03h34_05.png)
+
+![Result](/Assets/2023-04-29_03h34_25.png)
+
+
+
+
+
+
+
 
 
 
