@@ -254,7 +254,6 @@ be handled by it (registered in Program.cs).
 
  Now let's run the apps and see what we have.
 
-![Result](/Assets/2023-04-29_03h30_50.png)
 
 ![Result](/Assets/2023-04-29_03h31_02.png)
 
